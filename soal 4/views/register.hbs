@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<style>
+    *{
+        padding: 0px;
+        margin: 0px;
+    }
+    .form {
+  --bg-light: #efefef;
+  --bg-dark: #707070;
+  --clr: #58bc82;
+  --clr-alpha: #9c9c9c60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 300px;
+  margin: 40px auto;
+}
+
+.form .input-span {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form input[type="email"],
+.form input[type="password"],
+.form input[type="text"] {
+  border-radius: 0.5rem;
+  padding: 1rem 0.75rem;
+  width: 100%;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--clr-alpha);
+  outline: 2px solid var(--bg-dark);
+}
+
+.form input[type="email"]:focus,
+.form input[type="password"]:focus,
+.form input[type="text"]:focus {
+  outline: 2px solid var(--clr);
+}
+
+.label {
+  align-self: flex-start;
+  color: var(--clr);
+  font-weight: 600;
+}
+
+.form .submit {
+  padding: 1rem 0.75rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 3rem;
+  background-color: var(--bg-dark);
+  color: var(--bg-light);
+  border: none;
+  cursor: pointer;
+  transition: all 300ms;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+.form .submit:hover {
+  background-color: var(--clr);
+  color: var(--bg-dark);
+}
+
+.span {
+  text-decoration: none;
+  color: var(--bg-dark);
+}
+
+.span a {
+  color: var(--clr);
+}
+
+body {
+    background-color: rgb(19, 17, 29);
+    margin: 30px auto;
+}
+
+.container {
+    wid
+    background-color: red;
+}
+</style>
+<body>
+
+  {{!-- jika passwor salah --}}
+   {{#if notfound_msg}}
+<script>
+Swal.fire({
+  icon: "error",
+  title: "Oops...",
+  text:"akun sudah ada"
+});
+</script>
+{{/if}}
+  {{!-- End --}}
+
+
+    {{!-- jika user sudah ada--}}
+   {{#if error_msg}}
+<script>
+Swal.fire({
+  icon: "error",
+  title: "Oops...",
+  text:"Semua kolom harus diisi"
+});
+</script>
+{{/if}}
+  {{!-- End --}}
+    <div class="container">
+<form class="form"  method="POST" action="/register">
+  <span class="input-span">
+    <label for="email" class="label">Email</label>
+    <input type="email" name="email" id="email"/></span>
+  <span class="input-span">
+  <span class="input-span">
+    <label for="email" class="label">Username</label>
+    <input type="text" name="username" id="email"/></span>
+  <span class="input-span">
+    <label for="password" class="label">Password</label>
+    <input type="password" name="password" id="password"
+  /></span>
+  <input class="submit" type="submit" value="Log in" />
+  <span class="span">Have an account? <a href="/login">Log in</a></span>
+</form>
+</div>
+</body>
+</html>
