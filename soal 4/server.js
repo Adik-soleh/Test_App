@@ -1,8 +1,8 @@
 const express = require('express');
 const session = require('express-session');
 const bcrypt = require('bcryptjs');
-const pool = require('./db'); // Menyesuaikan dengan path db kamu
-const upload = require('./midelware/multer'); // Menyesuaikan dengan path middleware kamu
+const pool = require('./db'); 
+const upload = require('./midelware/multer');
 const path = require('path');
 const app = express();
 const checksession = require('./midelware/auth')
@@ -10,7 +10,7 @@ const flash = require('connect-flash');
 
 // Set up middleware
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public'))); // Untuk file static, jika diperlukan
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Session configuration
 app.use(session({
@@ -60,14 +60,12 @@ app.post('/register', async (req, res) => {
   
     try {
       // Cek apakah email sudah ada di database
-      const userExists = await pool.query('SELECT * FROM user_tbs WHERE email = $1', [email]);
+      const user = await pool.query('SELECT * FROM user_tbs WHERE email = $1', [email]);
       
-      
-      if (userExists.rows.length > 0) {
+      if (user.rows.length > 0) {
         // Jika user dengan email yang sama sudah ada
-        req.flash('notfound_msg', 'Akun dengan email ini sudah terdaftar');
-        return res.redirect('/register');
-        
+        req.flash('notfound_msg', 'email ini sudah terdaftar');
+        return res.redirect('/register');     
     }
     
   
